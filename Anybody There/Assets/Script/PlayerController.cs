@@ -8,19 +8,21 @@ public class PlayerController : MonoBehaviour {
     public float movementSpeed = 5f;
     public float mouseSensitivity = 2f;
     public float upDownRange = 90;
-    public float jumpSpeed = 5f;
+  
+
     public float downSpeed = 5;
 
+   
     private Vector3 speed;
     private float forwardSpeed;
     private float sideSpeed;
-
+   
     private float rotLeftRight;
     private float rotUpDown;
     private float verticalRotation = 0f;
 
     private float verticalVelocity = 0f;
-
+    
     private CharacterController cc;
 
 	// Use this for initialization
@@ -34,8 +36,10 @@ public class PlayerController : MonoBehaviour {
         FPMove();
         FPRotate();
 
+        
 	}
-
+    
+   
     void FPMove()
     {
         forwardSpeed = Input.GetAxis("Vertical") * movementSpeed;
@@ -55,7 +59,8 @@ public class PlayerController : MonoBehaviour {
 
         cc.Move(speed * Time.deltaTime);
         }
-
+    
+   
     void FPRotate()
     {
         //좌우회전
@@ -64,7 +69,7 @@ public class PlayerController : MonoBehaviour {
 
         //상하회전
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
+        verticalRotation = Mathf.Clamp(verticalRotation, -90, 90); //Mathf.Clamp(verticalRotation, 최소값, 최대값)
         Camera.main.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
 
     }
